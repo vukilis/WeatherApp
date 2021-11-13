@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{page_tittle}}</title>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='images/logo.png') }}" type="image/ico" sizes="128x128">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-secondary">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static',filename='images/logo.png') }}" alt="weather" width="30" height="30" class="d-inline-block align-text-top">
+                Weather App
+            </a>
+            <div class="position-absolute top-50 start-50 translate-middle text-light">
+                <div class="spinner-grow text-light" style="width: 1rem; height: 1rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <span id="time" class="">05:00</span>
+            </div>
+            <form class="d-flex" method="POST">
+                <input class="form-control me-2" type="text" placeholder="Search location" name="city">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            {% set message_class = 'alert-success' %}
+
+            {% if category == 'error'%}
+                {% set message_class = 'alert-danger' %}
+            {% endif %}
+                <div class="alert {{message_class}} d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                    <div class="m-auto">
+                        {{message}}
+                    </div>
+                </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <section class="container-fluid p-5">
+        <!-- <input class="form-control form-control-lg w-50 m-auto" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example"> -->
+        <div class="container">
+            <div class="row row-cols-auto">
+                {% for weather in weather_data %}
+                    <div class="col p-3">
+                        <div class="card m-auto text-center text-white bg-dark" style="width: 18rem;">
+                            <div class="nav justify-content-end">
+                                <a href="{{url_for('delete_city', name=weather.city)}}"><button type="button" class="btn-close btn-close-white" aria-label="Close"></button></a>
+                            </div> 
+                            <div class="card-body">
+                                <label class="card-title fs-1">{{weather.time}}</label>
+                                <label class="card-title fs-6">{{weather.date}}</label>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-dark bg-light">
+                                    <h5 class="card-title">{{weather.city}}, {{weather.country}}</h5>
+                                    <p class="card-text text-primary"><b>{{weather.description}}</b></p>
+                                </li>
+                                <li class="list-group-item text-dark bg-light">
+                                    <figure class="figure m-0">
+                                        <img src="https://openweathermap.org/img/w/{{weather.icon}}.png" class="figure-img img-fluid rounded m-0" alt="weather icon">
+                                    </figure>
+                                </li>
+                                <li class="list-group-item text-dark bg-light">
+                                    <b class="fs-2 text-danger">{{weather.temperature}}°C</b><br>
+                                    <b class="fs-5 text-success">RealFeel®{{weather.realfeel}}°</b><hr>
+                                    <p class="m-0">Humidity: {{weather.humidity}}%</p>
+                                    <p class="m-0">Wind: {{weather.wind}}km/h {{weather.deg}}</p>
+                                    <p class="m-0">Cloud cover: {{weather.cloud}}%</p>
+                                    <p class="m-0">visibility: {{weather.visibility}}km</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script async src="{{ url_for('static',filename='js/main.js') }}"></script> 
+</body>
+
+</html>
