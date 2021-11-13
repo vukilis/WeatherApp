@@ -6,6 +6,7 @@ import datetime, math, os
 from application import db
 from application.models import City
 from application import app
+from astral.sun import sun
 
 
 def get_weather_data(city_name):
@@ -65,7 +66,6 @@ def index_get():
         }
         weather_data.append(weather)
         # pprint.pprint(weather)
-
 
     return render_template('weather.html', page_tittle=page_tittle, weather_data=weather_data)
 

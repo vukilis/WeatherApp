@@ -11,7 +11,6 @@
     --bg-primary: #0A0400;
     --bg-secondary: #fff;
     --scroll-primary: #FBB023;
-    --swiper-theme-color: #A06903!important;
 }
 
 ::-webkit-scrollbar {
@@ -21,11 +20,11 @@
     background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--scroll-primary);
+    background: #555
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgb(33,37,41);
 }
 
 .spinner-grow{
@@ -40,4 +39,17 @@
         opacity: 1;
         transform: none;
     }
+}
+
+.day {
+    background-image: url("../images/day.jpg");
+    background-size: 100%;
+    background-repeat:no-repeat; 
+    background-size: cover;
+}
+.night {
+    background-image: url("../images/night.jpg");
+    background-size: 100%;
+    background-repeat:no-repeat; 
+    background-size: cover;
 }

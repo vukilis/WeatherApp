@@ -28,3 +28,9 @@ window.onload = function () {
     startTimer(fiveMinutes, display);
 };
 // ####################################day and night##################################################
+var now = new Date();
+if (now.getHours() > 6 && now.getHours() < 20) {
+    document.body.className += " day";
+} else {
+    document.body.className += " night";
+}
