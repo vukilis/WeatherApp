@@ -1,5 +1,5 @@
 ## Screenshot
-![Image of Yaktocat](https://raw.githubusercontent.com/vukilis/WeatherApp/main/application/images/APP.png)
+![Image of WeatherApp](https://raw.githubusercontent.com/vukilis/WeatherApp/main/application/static/images/APP.png)
 
 
 ## About
