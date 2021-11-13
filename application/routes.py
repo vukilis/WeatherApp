@@ -68,8 +68,8 @@ def index_get():
 
     return render_template('weather.html', page_tittle=page_tittle, weather_data=weather_data)
 
-@app.route("/")
-@app.route("/home")
+@app.route("/", methods=["POST"])
+@app.route("/home", methods=["POST"])
 def index_post():
     err_msg = ''
     new_city = request.form.get('city')
