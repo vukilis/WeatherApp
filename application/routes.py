@@ -6,7 +6,6 @@ import datetime, math, os
 from application import db
 from application.models import City
 from application import app
-from astral.sun import sun
 
 
 def get_weather_data(city_name):
