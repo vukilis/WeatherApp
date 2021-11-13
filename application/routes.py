@@ -95,7 +95,7 @@ def index_post():
     
     return redirect(url_for('index_get'))
 
-@app.route("/delete/<name>/")
+@app.route("/delete/<name>/", methods=["GET", "POST"])
 def delete_city(name):
     city = City.query.filter_by(name=name).first()
     db.session.delete(city)
