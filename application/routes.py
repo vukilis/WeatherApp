@@ -38,8 +38,8 @@ def wind_deg(deg):
 def visibility_m_to_km(km):
     return (km / 1000)
 
-@app.route("/", methods=["GET"])
-@app.route("/home", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
+@app.route("/home", methods=["GET", "POST"])
 def index_get():
     page_tittle = "WeatherApp | Vuk Lekić"       
     cities = City.query.all()  
@@ -68,8 +68,8 @@ def index_get():
 
     return render_template('weather.html', page_tittle=page_tittle, weather_data=weather_data)
 
-@app.route("/", methods=["POST"])
-@app.route("/home", methods=["POST"])
+@app.route("/", methods=["GET", "POST"])
+@app.route("/home", methods=["GET", "POST"])
 def index_post():
     err_msg = ''
     new_city = request.form.get('city')
