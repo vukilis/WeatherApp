@@ -38,8 +38,8 @@ def wind_deg(deg):
 def visibility_m_to_km(km):
     return (km / 1000)
 
-@app.route("/")
-@app.route("/home")
+@app.route("/", methods=["GET"])
+@app.route("/home", methods=["GET"])
 def index_get():
     page_tittle = "WeatherApp | Vuk Lekić"       
     cities = City.query.all()  
