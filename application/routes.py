@@ -10,7 +10,7 @@ from application import app
 
 def get_weather_data(city_name):
     # api_key = os.environ['weather_data']
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid=bd538dee2cdc19d56c99aea179f5c1cb&units=metric'
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid=945d10e4825bf38566d7147d90440561&units=metric'
     response = requests.get(url).json()
     # pprint.pprint(response)
     return response
