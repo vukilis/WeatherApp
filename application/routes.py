@@ -2,15 +2,15 @@ import requests
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 import json, pprint
-import datetime, math, os
+import datetime, math
 from application import db
 from application.models import City
 from application import app
 
 
 def get_weather_data(city_name):
-    api_key = os.environ['weather_data']
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}&units=metric'
+    # api_key = os.environ['weather_data']
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid=bd538dee2cdc19d56c99aea179f5c1cb&units=metric'
     response = requests.get(url).json()
     # pprint.pprint(response)
     return response
